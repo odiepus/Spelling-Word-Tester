@@ -1,0 +1,30 @@
+body {
+    background-color: grey;}
+
+#description, #number-of-words, #page-title, #list  {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#page-title{
+    font-size: 35px;
+    margin: 10px;
+}
+
+#description{
+    font-size: 25px;
+    margin: 20px;
+}
+
+#number-of-words{
+    font-size: 20px;
+}
+
+#word-number-input{
+    margin: 10px;
+}
+
+#submit_words{
+    visibility: hidden;
+}
