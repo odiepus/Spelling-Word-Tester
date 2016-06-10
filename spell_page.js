@@ -4,7 +4,7 @@
 $(document).ready(function () {
     var word_list = JSON.parse(localStorage.getItem('words'));
     console.log(word_list);
-    
+
     var input_Form = document.querySelector("form");
 
     var synth = window.speechSynthesis;
@@ -24,6 +24,7 @@ $(document).ready(function () {
         speechSynthesis.onvoiceschanged = populateVoiceList;
     }
 
+    //here we have say word button which will grab first word in list and say it
     $("#say_word").click(function () {
         console.log(word_list[0]);
 
@@ -34,21 +35,31 @@ $(document).ready(function () {
 
         synth.speak(utterThis);
     });
-    
+
+    //here we grab the word that is inputted and compare it to first word in list
     input_Form.onsubmit = function (event) {
         event.preventDefault();
 
-        var grab_input= document.getElementById("check_word");
+        var grab_input = document.getElementById("check_word");
         var check_this = grab_input.value;
         console.log(check_this);
         console.log(word_list[word_list_iterator]);
-        if (check_this === word_list[word_list_iterator]){
-            alert("Correct!") ;
+
+        //if the words match then say so with alert otherwise say wrong with alert
+        if (check_this === word_list[word_list_iterator]) {
+            alert("Correct!");
+            word_list.shift();
+            localStorage.setItem("words", JSON.stringify(word_list));
+            document.location.reload(true);
+            
         }
-        else{
+        else {
             alert("Try Again!");
+
         }
     }
+
+
 
 
 
